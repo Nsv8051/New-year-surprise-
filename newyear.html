@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Happy New Year, My Love ✨</title>
+<style>
+body{margin:0;font-family:Poppins,Arial;background:#0f0f0f;
+padding:26px;color:#fff}
+.wrap{max-width:900px;margin:auto;background:#181818;
+border-radius:24px;padding:22px;border:2px solid #ff8fd6}
+
+.phrase{
+background:linear-gradient(135deg,#ffb6e6,#e6c9ff);
+color:#222;border-radius:18px;padding:16px;border:2px dashed #000;
+margin:10px 0;opacity:0;transform:translateY(10px);
+transition:.4s ease;cursor:pointer;
+}
+.phrase.show{opacity:1;transform:translateY(0)}
+
+.hint{text-align:center;color:#ffbadf;margin-bottom:10px;animation:blink 2s infinite}
+@keyframes blink{50%{opacity:.4}}
+
+.nav{display:flex;justify-content:space-between;margin-top:18px}
+.btn{padding:10px 16px;border-radius:999px;background:#ffb6e6;
+text-decoration:none;color:#000;font-weight:700}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<h2 style="text-align:center;color:#ffbadf">New Year Wishes For You 💖</h2>
+<div class="hint">Tap to reveal the wishes 💋🫂</div>
+
+<div class="phrase">“Happy New Year, my love… I’m grateful for every moment with you — more hugs, more love, always 🫂💋”</div>
+<div class="phrase">“As we step into a new year… my heart belongs to you — today and forever 💋🫂”</div>
+
+<div class="nav">
+<a href="promise.html" class="btn">⬅ Back</a>
+<a id="nextBtn" href="#" class="btn" style="opacity:.4;pointer-events:none">Final Page ➜</a>
+</div>
+</div>
+
+<script>
+const blocks=document.querySelectorAll(".phrase");
+let i=0;
+function reveal(){
+ if(i<blocks.length){
+   blocks[i].classList.add("show");
+   i++;
+   if(i===blocks.length){
+     const next=document.getElementById("nextBtn");
+     next.style.opacity="1";
+     next.style.pointerEvents="auto";
+     next.href="final.html";
+   }
+ }
+}
+blocks.forEach(b=>b.addEventListener("click",reveal));
+reveal();
+</script>
+</body>
+</html>

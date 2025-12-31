@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>For My Love, Shraddhya 💖</title>
+<style>
+body{
+  margin:0;font-family:Poppins,Arial;
+  background:linear-gradient(135deg,#ffb6e6,#e6c9ff,#ff9ac8);
+  display:flex;justify-content:center;align-items:center;
+  height:100vh;overflow:hidden;color:#111;
+}
+.card{
+  background:#0f0f0f;border-radius:28px;padding:28px;
+  border:2px solid #ff8fd6;max-width:700px;width:90%;
+  box-shadow:0 18px 40px rgba(0,0,0,.35);text-align:center;
+}
+h1{color:#ffbadf}
+#status{color:#ffbadf;margin-top:10px}
+.btn{
+  display:inline-block;margin-top:18px;
+  padding:10px 18px;border-radius:999px;
+  background:#ff9ac8;color:#000;font-weight:700;
+  text-decoration:none;
+}
+.btn.disabled{
+  opacity:.4;pointer-events:none;
+}
+</style>
+</head>
+
+<body>
+<div class="card">
+  <h1>Hi My Love, <b>Shraddhya</b> 💞</h1>
+
+  <p>This surprise will unlock at midnight… just for you 💋🫂✨</p>
+
+  <div id="status">Checking time…</div>
+
+  <a id="startBtn" href="memories.html" class="btn disabled">
+    Begin the Magic ➜
+  </a>
+</div>
+
+<script>
+// 🔒 Set unlock time to NEXT 12:00 AM (today midnight passed? then next day)
+function getNextMidnight(){
+  const now = new Date();
+  const target = new Date();
+  target.setHours(0,0,0,0);
+  if(now > target){ target.setDate(target.getDate()+1); }
+  return target;
+}
+
+const target = getNextMidnight();
+const status = document.getElementById("status");
+const btn = document.getElementById("startBtn");
+
+function update(){
+  const now = new Date();
+  const diff = target - now;
+
+  if(diff <= 0){
+    // 🔓 Unlock site
+    status.innerHTML = "Unlocked — Happy Midnight Surprise 🎆💞";
+    btn.classList.remove("disabled");
+    return;
+  }
+
+  // ⌛ Show countdown
+  const h = Math.floor(diff/3600000);
+  const m = Math.floor((diff%3600000)/60000);
+  const s = Math.floor((diff%60000)/1000);
+
+  status.innerHTML = `Opens at 12:00 AM — ${h}h ${m}m ${s}s left ⏳`;
+  setTimeout(update, 1000);
+}
+
+update();
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Our Little Moments 💗</title>
+<style>
+body{margin:0;font-family:Poppins,Arial;
+background:linear-gradient(135deg,#e6c9ff,#ffb6e6);
+padding:30px;overflow-x:hidden}
+.container{max-width:850px;margin:auto;background:#0f0f0f;
+padding:24px;border-radius:26px;border:2px solid #ff8fd6;
+box-shadow:0 18px 40px rgba(0,0,0,.35)}
+h2{color:#ffbadf;text-align:center}
+
+.phrase{
+background:linear-gradient(135deg,#ffb6e6,#e6c9ff);
+padding:14px;border-radius:18px;margin:10px 0;
+border:2px dashed #000;opacity:0;transform:translateY(10px);
+transition:.4s ease;cursor:pointer;
+}
+.phrase.show{opacity:1;transform:translateY(0)}
+
+.reveal-hint{text-align:center;color:#ffbadf;margin-bottom:10px;animation:blink 2s infinite}
+@keyframes blink{50%{opacity:.4}}
+
+.nav{display:flex;justify-content:space-between;margin-top:18px}
+.btn{padding:10px 16px;border-radius:999px;background:#ff9ac8;
+text-decoration:none;color:#000;font-weight:700}
+</style>
+</head>
+
+<body>
+<div class="container">
+<h2>Little Things I Love About Us ✨</h2>
+<div class="reveal-hint">Tap to reveal each line 💋🫂</div>
+
+<div class="phrase">💗 I love the way you make even ordinary days feel magical — especially with you by my side 🫂</div>
+<div class="phrase">🐱 Your smile is my favorite place to be… and I’d choose it forever 💋</div>
+<div class="phrase">🌸 With you, every moment becomes a memory worth keeping — always 🫂</div>
+<div class="phrase">🐼 You are my comfort, my calm, my happiness… and my forever hug 💋🫂</div>
+
+<div class="nav">
+<a href="index.html" class="btn">⬅ Back</a>
+<a id="nextBtn" href="#" class="btn" style="opacity:.4;pointer-events:none">Next ➜</a>
+</div>
+</div>
+
+<script>
+const lines=document.querySelectorAll(".phrase");
+let shown=0;
+
+function revealNext(){
+ if(shown<lines.length){
+   lines[shown].classList.add("show");
+   shown++;
+   if(shown===lines.length){
+     const next=document.getElementById("nextBtn");
+     next.style.opacity="1";
+     next.style.pointerEvents="auto";
+     next.href="promise.html";
+   }
+ }
+}
+lines.forEach(l=>l.addEventListener("click",revealNext));
+revealNext();
+</script>
+</body>
+</html>

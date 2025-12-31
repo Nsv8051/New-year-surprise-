@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My Promises 💜</title>
+<style>
+body{margin:0;font-family:Poppins,Arial;
+background:linear-gradient(135deg,#ff9ac8,#e6c9ff);
+padding:30px}
+.box{max-width:850px;margin:auto;background:#0f0f0f;
+padding:24px;border-radius:26px;border:2px solid #ff8fd6;
+box-shadow:0 18px 40px rgba(0,0,0,.35)}
+h2{color:#ffbadf;text-align:center}
+
+.phrase{
+background:#fff0fa;border-radius:18px;padding:16px;
+border:2px dashed #000;margin:10px 0;
+opacity:0;transform:translateY(10px);
+transition:.4s ease;cursor:pointer;
+}
+.phrase.show{opacity:1;transform:translateY(0)}
+
+.hint{text-align:center;color:#ffbadf;margin-bottom:10px;animation:blink 2s infinite}
+@keyframes blink{50%{opacity:.4}}
+
+.nav{display:flex;justify-content:space-between;margin-top:18px}
+.btn{padding:10px 16px;border-radius:999px;background:#ffb6e6;
+text-decoration:none;color:#000;font-weight:700}
+</style>
+</head>
+
+<body>
+<div class="box">
+<h2>My Promises To You 💞</h2>
+<div class="hint">Tap to reveal my promises 💋🫂</div>
+
+<div class="phrase">❤️ I promise to love you deeper every single day — with hugs that never run out 🫂</div>
+<div class="phrase">💖 I promise to stand by you in every season of life — with love and kisses 💋</div>
+<div class="phrase">🐱 I promise to cherish you, protect you, and support your dreams — always 🫂</div>
+<div class="phrase">🐼 I promise… my heart is yours, forever 💋🫂</div>
+
+<div class="nav">
+<a href="memories.html" class="btn">⬅ Back</a>
+<a id="nextBtn" href="#" class="btn" style="opacity:.4;pointer-events:none">Next ➜</a>
+</div>
+</div>
+
+<script>
+const items=document.querySelectorAll(".phrase");
+let n=0;
+function next(){
+ if(n<items.length){
+   items[n].classList.add("show");
+   n++;
+   if(n===items.length){
+     const next=document.getElementById("nextBtn");
+     next.style.opacity="1";
+     next.style.pointerEvents="auto";
+     next.href="newyear.html";
+   }
+ }
+}
+items.forEach(i=>i.addEventListener("click",next));
+next();
+</script>
+</body>
+</html>

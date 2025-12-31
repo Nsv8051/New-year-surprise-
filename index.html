@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>For My Love, Shraddhya 💖</title>
+
 <style>
 body{
   margin:0;font-family:Poppins,Arial;
@@ -34,7 +35,8 @@ h1{color:#ffbadf}
 <div class="card">
   <h1>Hi My Love, <b>Shraddhya</b> 💞</h1>
 
-  <p>This surprise will unlock at midnight… just for you 💋🫂✨</p>
+  <p>This surprise will unlock at midnight on  
+     <b>1 January 2026</b>… just for you 💋🫂✨</p>
 
   <div id="status">Checking time…</div>
 
@@ -44,40 +46,37 @@ h1{color:#ffbadf}
 </div>
 
 <script>
-// 🔒 Set unlock time to NEXT 12:00 AM (today midnight passed? then next day)
-function getNextMidnight(){
-  const now = new Date();
-  const target = new Date();
-  target.setHours(0,0,0,0);
-  if(now > target){ target.setDate(target.getDate()+1); }
-  return target;
-}
+// 🎯 Unlock time — 1 Jan 2026, 12:00 AM IST
+// IST = UTC +5:30
+const unlockTimeIST = new Date("2026-01-01T00:00:00+05:30");
 
-const target = getNextMidnight();
 const status = document.getElementById("status");
 const btn = document.getElementById("startBtn");
 
-function update(){
+function updateTimer(){
   const now = new Date();
-  const diff = target - now;
+  const diff = unlockTimeIST - now;
 
+  // 🔓 If current time is on/after unlock time -> unlock forever
   if(diff <= 0){
-    // 🔓 Unlock site
-    status.innerHTML = "Unlocked — Happy Midnight Surprise 🎆💞";
+    status.innerHTML = "Unlocked — Happy New Year My Love 🎆💞";
     btn.classList.remove("disabled");
     return;
   }
 
-  // ⌛ Show countdown
-  const h = Math.floor(diff/3600000);
-  const m = Math.floor((diff%3600000)/60000);
-  const s = Math.floor((diff%60000)/1000);
+  // ⏳ Show countdown
+  const d = Math.floor(diff / (1000*60*60*24));
+  const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+  const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+  const s = Math.floor((diff % (1000*60)) / 1000);
 
-  status.innerHTML = `Opens at 12:00 AM — ${h}h ${m}m ${s}s left ⏳`;
-  setTimeout(update, 1000);
+  status.innerHTML =
+    `Opens on 1 Jan 2026 at 12:00 AM — ${d}d ${h}h ${m}m ${s}s left ⏳`;
+
+  setTimeout(updateTimer, 1000);
 }
 
-update();
+updateTimer();
 </script>
 </body>
 </html>

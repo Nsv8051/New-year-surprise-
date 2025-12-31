@@ -4,57 +4,111 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>From Me… To You 💌</title>
 <style>
-body{margin:0;font-family:Poppins,Arial;
-background:linear-gradient(135deg,#e6c9ff,#ffb6e6);
-display:flex;justify-content:center;align-items:center;
-height:100vh;overflow:hidden}
-.box{background:#0f0f0f;border-radius:26px;padding:28px;
-border:2px solid #ff8fd6;text-align:center;color:#fff;
-max-width:750px;width:90%;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+body{
+  margin:0;
+  font-family:Poppins,Arial;
+  background:linear-gradient(135deg,#e6c9ff,#ffb6e6);
+  display:flex;justify-content:center;align-items:center;
+  height:100vh;overflow:hidden;
+}
+.box{
+  background:#0f0f0f;
+  border-radius:26px;
+  padding:28px;
+  border:2px solid #ff8fd6;
+  text-align:center;
+  color:#fff;
+  max-width:750px;
+  width:90%;
+  box-shadow:0 18px 40px rgba(0,0,0,.35);
+}
+h2{
+  color:#ffbadf;
+  margin-top:0;
+}
 
 .phrase{
-background:#fff0fa;border-radius:18px;padding:16px;
-border:2px dashed #000;margin:10px 0;
-opacity:0;transform:translateY(10px);
-transition:.4s ease;cursor:pointer;
+  background:#fff0fa;
+  border-radius:18px;
+  padding:16px;
+  border:2px dashed #000;
+  margin:10px 0;
+  opacity:0;
+  transform:translateY(10px);
+  transition:.4s ease;
+  cursor:pointer;
 }
-.phrase.show{opacity:1;transform:translateY(0)}
+.phrase.show{
+  opacity:1;
+  transform:translateY(0);
+}
 
-.btn{display:inline-block;margin-top:16px;padding:10px 16px;
-border-radius:999px;background:#ff9ac8;color:#000;font-weight:700;
-text-decoration:none}
-.hint{color:#ffbadf;margin-bottom:10px;animation:blink 2s infinite}
+.hint{
+  color:#ffbadf;
+  margin-bottom:10px;
+  animation:blink 2s infinite;
+}
 @keyframes blink{50%{opacity:.4}}
+
+.btn{
+  display:inline-block;
+  margin-top:14px;
+  padding:10px 16px;
+  border-radius:999px;
+  background:#ff9ac8;
+  color:#000;
+  font-weight:700;
+  text-decoration:none;
+}
 </style>
 </head>
 
 <body>
 <div class="box">
-<h2 style="color:#ffbadf">I Love You, Shraddhya 💞</h2>
+<h2>I Love You, Shraddhya 💞</h2>
+
 <div class="hint">Tap to reveal the last words 💋🫂</div>
 
 <div class="phrase">You are my favorite person… my safe place… my happiness 🫂</div>
 <div class="phrase">Thank you for being in my life — today and always 💋</div>
 <div class="phrase">Every hug, every kiss, every moment… means everything to me 🫂💋</div>
 
-<a href="index.html" id="replay" class="btn" style="opacity:.4;pointer-events:none">Replay Journey 🔁</a>
+<a href="secret.html" id="secretBtn" class="btn" style="opacity:.4;pointer-events:none">
+  ❤️ Tap for one last surprise
+</a>
+<br>
+<a href="index.html" id="replay" class="btn" style="opacity:.4;pointer-events:none">
+  Replay Journey 🔁
+</a>
 </div>
 
 <script>
-const p=document.querySelectorAll(".phrase");
-let s=0;
+const lines = document.querySelectorAll(".phrase");
+let shown = 0;
+
 function reveal(){
- if(s<p.length){
-   p[s].classList.add("show");
-   s++;
-   if(s===p.length){
-     const r=document.getElementById("replay");
-     r.style.opacity="1";
-     r.style.pointerEvents="auto";
-   }
- }
+  if(shown < lines.length){
+    lines[shown].classList.add("show");
+    shown++;
+
+    // when all lines are revealed → enable buttons
+    if(shown === lines.length){
+      const secret = document.getElementById("secretBtn");
+      const replay = document.getElementById("replay");
+
+      secret.style.opacity = "1";
+      secret.style.pointerEvents = "auto";
+
+      replay.style.opacity = "1";
+      replay.style.pointerEvents = "auto";
+    }
+  }
 }
-p.forEach(x=>x.addEventListener("click",reveal));
+
+// click to reveal next line
+lines.forEach(l => l.addEventListener("click", reveal));
+
+// reveal the first line automatically
 reveal();
 </script>
 </body>
